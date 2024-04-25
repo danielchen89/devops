@@ -1,0 +1,9 @@
+mp-cloud-gateway				
+mp-cloud-auth				
+op-cloud-gateway				
+op-cloud-auth				
+unified-account				
+unified-management
+base-cloud-parent
+base-cloud-gateway-archetype
+base-cloud-archetype

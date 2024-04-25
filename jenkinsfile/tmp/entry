@@ -1,0 +1,46 @@
+pipeline {
+    agent { label 'jnlp-slave' }
+    environment {
+        JAVA_HOME = "/data/jdk1.8.0_101"
+    }
+    
+	stages {
+		stage('Clone') {
+			steps {
+				script{
+				    sh '''
+					pwd
+					ls
+					ls /tmp
+					python --version
+					echo ${env}
+					echo ${env.gitlabSourceRepoSshUrl}
+					'''
+					git([url: env.gitlabSourceRepoSshUrl, branch: env.gitlabTargetBranch])					
+				}					
+			}
+		}
+		stage('Build') {
+			steps {
+				script{
+				    sh '''
+					pwd
+					ls
+					ls /tmp
+					python --version
+					echo ${env}
+					'''
+
+					
+				    if (true) {
+				        echo '这是前端项目'
+				    } else {
+				         echo '这是后端项目'
+				    }
+				}
+			}
+		}
+	}
+
+
+}

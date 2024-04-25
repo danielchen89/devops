@@ -1,0 +1,14 @@
+pipeline {
+  agent { label 'jnlp-slave' }
+  stages {
+    stage('pull') {
+      agent any
+      steps {
+        sh '''
+		sleep 5
+		echo "hello world"
+		'''
+      }
+    }
+  }
+}

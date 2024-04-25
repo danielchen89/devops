@@ -1,0 +1,31 @@
+pipeline {
+    agent { label 'jnlp-slave' }
+    environment {
+        JAVA_HOME = "/data/jdk1.8.0_101"
+    }
+	stages {
+		stage('Clone') {
+				steps {
+					script{
+						git([url: env.gitlabSourceRepoSshUrl, branch: env.gitlabTargetBranch])					
+					}					
+				}
+			}
+		stage('Build'){
+				steps{
+					sh '''
+					/data/mvn_dev/bin/mvn -Dmaven.javadoc.skip=true -Dmaven.test.skip=true clean install
+					'''
+            }
+        } 
+		stage('Deploy'){
+				steps{
+					sh '''
+					/bin/bash /data/scripts/deploy-xxljob.sh "xxl-job" "xxl-job-admin/target" "$setup"
+					echo $setup
+					echo $gitlabTargetBranch
+					'''
+				}
+        } 
+	}
+}

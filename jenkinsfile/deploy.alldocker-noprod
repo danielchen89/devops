@@ -1,0 +1,30 @@
+pipeline {
+    agent { label 'jnlp-slave' }
+
+	stages {
+		stage("Description") {
+            steps {
+                script {
+				   wrap([$class: 'BuildUser']) {
+					   currentBuild.displayName = "#$BUILD_NUMBER $detail ${BUILD_USER}"
+                   }
+                    
+                } 
+            }
+        }
+		stage('Clean') {
+			steps {
+				sh '''
+					/usr/bin/python3 /data/scripts/cleanWorkdir.py
+				'''
+			}
+		}
+		stage('Build') {
+			steps {
+				sh '''
+					/usr/local/bin/fab -f /data/scripts/fabfile-all.py $env_deploy:"$detail"
+				'''
+			}
+		}
+	}
+}

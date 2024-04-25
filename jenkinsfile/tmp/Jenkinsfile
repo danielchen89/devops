@@ -1,0 +1,17 @@
+pipeline {
+    agent { label 'jnlp-slave' }
+    stages {
+        stage('BuildJob') {
+			steps {
+				script{
+					String[] srvs = env.service.replaceAll("\"","").split(',');	
+						for (String srv : srvs){
+						//	String jkscli = '/bin/bash /data/scripts/jkscli.sh build ' + srv;
+						//	sh jkscli
+						    sh '/bin/bash /data/scripts/jkscli.sh build ' + srv;
+						}
+					}			
+                }
+            }
+        }
+    }

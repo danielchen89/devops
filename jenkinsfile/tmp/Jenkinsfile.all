@@ -1,0 +1,28 @@
+pipeline {
+    agent { label 'jnlp-slave' }
+    environment {
+        JAVA_HOME = "/data/jdk1.8.0_101"
+    }
+	stages {
+		stage('Clone') {
+				steps {
+					script{
+						println("env.service: " + env.service.replaceAll("\"",""))
+						String[] srvs = env.service.replaceAll("\"","").split(',');
+						
+						for (String srv : srvs){
+							println("service: " + srv)
+							git([url: "git@qygit.ipaylinks.com:iPayMerak/${srv}.git", branch: env.branch])					
+						}
+					}					
+				}
+			}
+		stage('Build'){
+				steps{
+					sh '''
+					/data/mvn_dev/bin/mvn -Dmaven.javadoc.skip=true -Dmaven.test.skip=true clean install
+					'''
+            }
+        } 
+	}
+}
