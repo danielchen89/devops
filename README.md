@@ -1,4 +1,33 @@
-# 不断更新中
+## aws 
+    1)terraform 基础设施即代码 (Infrastructure as Code, IaC) 工具，用于自动化管理和部署云基础架构。
+    2）aws-scripts  aws日常运维管理脚本
+    3) lambda   lambda脚本
+
+## chatops - 通过聊天的方式完成你的运维工作
+        1)  添加域控用户  ldap:add:username:chinesename 如 ldap:add:san.zhang:张三
+            启用域控用户  ldap:enable:username
+            禁用域控用户  ldap:disable:username 
+            删除域控用户  ldap:delete:username  
+            查找域控用户  ldap:search:username 
+            修改域控密码  ldap:modify:username
+        2)  远程服务器操作 (保留功能，生产暂未启用)
+            top命令            ssh:hostname:top 如 ssh:prod-unified1:top
+            查看磁盘空间大小    ssh:hostname:disk
+            查看/data中大文件   ssh:hostname:find
+        3)  获取服务器所有监控值  zbx|graph|hostname
+            获取服务器监控图      zbx|png|hostname|监控值 如 zbx|png|prod-unified1|CPU usage
+        4)  获取具体zk值   zk(1|2):(env|noenv):hostname:具体值  如 zk1:env:dc-front:dc.connect.backup.port
+            获取zk节点信息 zk(1|2):(env|noenv):hostname	
+
+## jenkinsfile jenkins全自动化打包系统
+    jenkins CI系统（CD需要接入发布系统），解决如下痛点问题：
+    1.jenkins打包创建构建job复杂，动作繁琐
+    2.同时并发打包能力差
+    3.环境问题，打包容易失败
+    4.不能随时随地打包，有固定打包时间
+    5.前后端打包方式有区别
+    6.打包分配权限不规范
+    
 
 
 ## svctool.go 服务自动化运维工具
@@ -59,4 +88,3 @@
 		kafka 消费组 列出: mid consumergrouplist(clist) kafka
 		kafka 消费组 操作: mid cdescribe kafka 消费组名字
 
-## jenkinsfile jenkins全自动化打包系统
