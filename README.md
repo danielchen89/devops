@@ -4,9 +4,9 @@
     3) lambda   lambda脚本
 
 ## zabbix
-   1)服务端口自动发现，存活状态监控
-   2)钉钉告警,电话告警
-   3)chatops结合zabbix自动获得服务器监控图
+    1)服务端口自动发现，存活状态监控。
+    2)钉钉告警,电话告警。
+    3)chatops结合zabbix自动获得服务器监控图。
 
 ## chatops - 通过聊天的方式完成你的运维工作
         1)  添加域控用户  ldap:add:username:chinesename 如 ldap:add:san.zhang:张三
